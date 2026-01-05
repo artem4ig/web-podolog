@@ -3,438 +3,350 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Подолог Голованівськ | Піщанська Іра</title>
+    <title>Подолог Умань | Бондаренко Анастасія</title>
+    
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@600;700&family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@600;700&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
     <style>
-        /* --- 1. НАЛАШТУВАННЯ --- */
+        /* --- 1. БАЗА ТА КОЛЬОРИ --- */
         :root {
-            --bg-color: #F9F7F2;       
-            --accent: #7A9A95;         
-            --accent-light: #A3C4BF;   
-            --accent-dark: #56706C;    
-            --text-main: #4A4A4A;      
+            --bg: #FAFAF8;             /* Дуже світлий беж */
+            --accent: #7A9A95;         /* Шавлієвий зелений */
+            --accent-dark: #4A635F;    /* Темно-зелений */
+            --text: #333333;
+            --text-light: #666666;
             --white: #ffffff;
             --viber: #7360f2;
+            --blob-color: rgba(122, 154, 149, 0.15);
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; }
 
-        html, body {
-            width: 100%;
-            overflow-x: hidden;
+        body {
             font-family: 'Montserrat', sans-serif;
-            background-color: var(--bg-color);
-            color: var(--text-main);
-            scroll-behavior: smooth;
+            background-color: var(--bg);
+            color: var(--text);
+            overflow-x: hidden;
+            line-height: 1.6;
         }
 
-        /* ФІКС: Прибираємо підкреслення всюди */
-        a { 
-            text-decoration: none !important; 
-            border: none;
-            color: inherit; 
-            transition: 0.3s; 
-        }
+        a { text-decoration: none !important; color: inherit; transition: 0.3s; }
+        ul { list-style: none; }
 
-        h1, h2, h3 {
-            font-family: 'Cormorant Garmond', serif;
-            color: var(--accent-dark);
-            font-weight: 700;
+        /* Декоративні плями */
+        .bg-blob {
+            position: absolute;
+            background: var(--blob-color);
+            border-radius: 50%;
+            filter: blur(60px);
+            z-index: -1;
         }
+        .blob-1 { width: 400px; height: 400px; top: -100px; left: -100px; }
+        .blob-2 { width: 300px; height: 300px; bottom: 10%; right: -50px; background: rgba(212, 175, 55, 0.1); }
 
-        h2.section-title {
+        /* Типографіка */
+        h1, h2, h3 { font-family: 'Cormorant Garamond', serif; font-weight: 700; color: var(--accent-dark); }
+        
+        .section-title {
             text-align: center;
-            font-size: 3rem;
+            font-size: 2.8rem;
             margin-bottom: 50px;
-            position: relative;
-            z-index: 2;
         }
 
-        /* --- 2. КНОПКИ --- */
+        /* Кнопки */
         .btn {
             background-color: var(--accent);
             color: var(--white);
-            padding: 18px 45px;
+            padding: 16px 40px;
             border-radius: 50px;
-            font-family: 'Montserrat', sans-serif;
             font-weight: 600;
             text-transform: uppercase;
             letter-spacing: 1px;
-            font-size: 0.9rem;
             border: none;
             cursor: pointer;
-            transition: all 0.4s ease;
-            box-shadow: 0 10px 20px rgba(122, 154, 149, 0.3);
+            box-shadow: 0 10px 20px rgba(122, 154, 149, 0.25);
             display: inline-block;
+            font-size: 0.9rem;
         }
-
         .btn:hover {
             background-color: var(--accent-dark);
             transform: translateY(-3px);
-            box-shadow: 0 15px 25px rgba(122, 154, 149, 0.5);
+            box-shadow: 0 15px 30px rgba(122, 154, 149, 0.4);
         }
 
-        /* --- 3. ХЕДЕР --- */
+        /* --- 2. ХЕДЕР (Оновлений: тільки телефон) --- */
         header {
-            position: absolute;
-            top: 0; left: 0; width: 100%;
-            padding: 20px 5%;
+            padding: 15px 5%;
             display: flex;
             justify-content: space-between;
             align-items: center;
+            background: rgba(250, 250, 248, 0.95);
+            backdrop-filter: blur(10px);
+            position: sticky;
+            top: 0;
             z-index: 1000;
-            background: linear-gradient(to bottom, rgba(0,0,0,0.4), transparent);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.02);
         }
         .logo { 
-            font-family: 'Cormorant Garmond', serif; 
-            font-size: 1.8rem; 
-            color: var(--white); 
-            text-shadow: 0 2px 4px rgba(0,0,0,0.3);
-        }
-        .header-socials {
-            display: flex;
-            align-items: center;
-            gap: 15px;
-        }
-        .header-socials a {
-            color: var(--white);
-            font-size: 1.3rem;
-            transition: 0.3s;
-            text-shadow: 0 2px 4px rgba(0,0,0,0.3);
-            display: flex;
-            align-items: center;
-        }
-        .header-socials a:hover { color: var(--accent); transform: scale(1.1); }
-
-        /* --- 4. HERO (НОВА ЛОГІКА) --- */
-        .hero {
-            position: relative;
-            height: 100vh;
-            width: 100%;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            text-align: center;
-            overflow: hidden;
-            /* ФОН-ЗАПАСКА: Якщо відео немає, покажеться ця картинка */
-            /* Переконайтеся, що у вас є папка img і в ній файл work3.jpg */
-            background: url('img/work3.jpg') no-repeat center center/cover;
-        }
-
-        .back-video {
-            position: absolute; top: 0; left: 0; width: 100%; height: 100%;
-            object-fit: cover; 
-            z-index: 0; /* Відео лежить поверх фону */
-        }
-
-        .hero-overlay {
-            position: absolute; top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(44, 44, 44, 0.5); /* Затемнення */
-            z-index: 1; /* Затемнення поверх відео */
-        }
-
-        .hero-content {
-            z-index: 2; /* Текст поверх усього */
-            max-width: 900px;
-            padding: 40px;
-            background: rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(8px);
-            border-radius: 30px;
-            border: 1px solid rgba(255,255,255,0.2);
-        }
-
-        .hero h1 {
-            font-size: 4.5rem;
-            color: var(--white);
-            line-height: 1;
-            margin-bottom: 20px;
-            font-weight: 600;
-        }
-        .hero p {
-            font-size: 1.2rem;
-            color: #f0f0f0;
-            margin-bottom: 40px;
-            font-weight: 300;
+            font-family: 'Cormorant Garamond', serif; 
+            font-size: 1.4rem; 
+            font-weight: 700; 
+            color: var(--accent-dark); 
+            text-transform: uppercase;
             letter-spacing: 1px;
         }
+        .header-phone a { 
+            font-size: 1.1rem; 
+            color: var(--text); 
+            font-weight: 600; 
+            display: flex; 
+            align-items: center; 
+            gap: 8px; 
+        }
+        .header-phone a i { color: var(--accent); }
+        .header-phone a:hover { color: var(--accent-dark); }
 
-        /* --- 5. ПЕРЕВАГИ --- */
-        .features {
-            padding: 80px 5%;
-            margin-top: -60px;
+        /* --- 3. HERO --- */
+        .hero {
+            padding: 40px 5%;
+            min-height: 85vh;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
             position: relative;
-            z-index: 2;
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
             gap: 40px;
         }
+
+        .hero-text { flex: 1; max-width: 600px; }
+        .hero h1 { font-size: 4rem; line-height: 1.1; margin-bottom: 20px; }
+        .hero p { font-size: 1.2rem; color: var(--text-light); margin-bottom: 40px; max-width: 450px; }
+
+        .hero-image-container {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            position: relative;
+        }
+
+        .hero-blob-img {
+            width: 400px; height: 450px;
+            object-fit: cover;
+            border-radius: 40% 60% 70% 30% / 40% 50% 60% 50%;
+            box-shadow: 20px 20px 60px rgba(0,0,0,0.1);
+            animation: morph 8s ease-in-out infinite;
+            background-color: #ddd;
+        }
+
+        @keyframes morph {
+            0%, 100% { border-radius: 40% 60% 70% 30% / 40% 50% 60% 50%; }
+            34% { border-radius: 70% 30% 50% 50% / 30% 30% 70% 70%; }
+            67% { border-radius: 100% 60% 60% 100% / 100% 100% 60% 60%; }
+        }
+
+        /* --- 4. ПЕРЕВАГИ --- */
+        .features { padding: 60px 5%; display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 30px; }
         .feature-card {
-            background: var(--white);
-            padding: 50px 35px;
-            text-align: center;
-            border-radius: 25px;
-            box-shadow: 0 20px 50px rgba(122, 154, 149, 0.15);
-            transition: all 0.4s ease;
-            border: 1px solid transparent;
+            background: var(--white); padding: 40px; border-radius: 20px; text-align: center;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.03); transition: 0.3s;
         }
-        .feature-card:hover {
-            transform: translateY(-15px);
-            border-color: var(--accent-light);
-            box-shadow: 0 25px 60px rgba(122, 154, 149, 0.25);
+        .feature-card:hover { transform: translateY(-10px); box-shadow: 0 15px 40px rgba(122, 154, 149, 0.15); }
+        .feature-icon {
+            width: 70px; height: 70px; background: var(--bg); border-radius: 50%;
+            display: flex; align-items: center; justify-content: center; margin: 0 auto 20px;
+            color: var(--accent); font-size: 1.8rem;
         }
-        .icon-circle {
-            width: 90px; height: 90px;
-            background: #EFF5F4;
-            border-radius: 50%;
-            display: flex; align-items: center; justify-content: center;
-            margin: 0 auto 25px;
-            color: var(--accent);
-            font-size: 2.2rem;
-            transition: all 0.4s ease;
-        }
-        .feature-card:hover .icon-circle {
-            background: var(--accent);
-            color: var(--white);
-            box-shadow: 0 0 20px rgba(122, 154, 149, 0.4);
-        }
-        .feature-card h3 { font-size: 1.6rem; margin-bottom: 15px; color: var(--accent-dark); }
-        .feature-card p { font-size: 1rem; color: #666; line-height: 1.6; }
 
-        /* --- 6. ПРО МЕНЕ --- */
-        .about { padding: 100px 5%; }
-        .about-wrapper {
-            display: grid; grid-template-columns: 1.2fr 0.8fr; gap: 60px;
-            align-items: center; max-width: 1200px; margin: 0 auto;
+        /* --- 5. ПРАЙС (ОНОВЛЕНИЙ) --- */
+        .pricing { padding: 80px 5%; background: var(--white); }
+        .price-wrapper {
+            max-width: 1000px;
+            margin: 0 auto;
+            background: var(--bg);
+            padding: 40px;
+            border-radius: 30px;
+            display: grid;
+            grid-template-columns: 1fr 1fr; /* Дві колонки */
+            gap: 40px;
         }
-        .about-text p { margin-bottom: 20px; font-size: 1.1rem; line-height: 1.8; color: #555; }
-        .highlight { color: var(--accent); font-weight: 600; }
-        .about-video-frame {
-            position: relative; width: 100%; max-width: 350px; margin: 0 auto;
-            border-radius: 200px 200px 20px 20px; overflow: hidden;
-            box-shadow: 20px 20px 0px var(--accent);
-        }
-        .about-video-frame video { width: 100%; height: 100%; display: block; object-fit: cover; aspect-ratio: 9/16; }
-
-        /* --- 7. ПРАЙС --- */
-        .pricing { padding: 100px 5%; background: var(--white); }
-        .price-container {
-            max-width: 1000px; margin: 0 auto; display: grid;
-            grid-template-columns: 1fr 1fr; gap: 40px;
-        }
+        .price-col h3 { text-align: center; margin-bottom: 20px; font-size: 1.5rem; color: var(--accent); }
+        
         .price-row {
-            display: flex; justify-content: space-between; align-items: baseline;
-            margin-bottom: 15px; padding-bottom: 15px; border-bottom: 1px dotted #ccc;
+            display: flex; justify-content: space-between; align-items: center;
+            padding: 12px 0; border-bottom: 1px solid rgba(0,0,0,0.05);
         }
-        .price-name { font-weight: 500; color: #333; }
-        .price-cost { font-weight: 700; color: var(--accent-dark); font-size: 1.1rem; }
+        .price-name { font-weight: 500; font-size: 1rem; }
+        .price-cost { 
+            font-weight: 700; color: var(--accent-dark); 
+            background: var(--white); padding: 4px 12px; border-radius: 15px; 
+            font-size: 0.95rem; box-shadow: 0 2px 5px rgba(0,0,0,0.05); 
+        }
 
-        /* --- 8. ГАЛЕРЕЯ (ФІКС КВАДРАТНИХ ФОТО) --- */
-        .gallery { padding: 100px 5%; background: var(--bg-color); }
-        .gallery-grid {
-            display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px;
-        }
-        .gallery-item {
-            border-radius: 20px; overflow: hidden;
-            box-shadow: 0 10px 20px rgba(0,0,0,0.05); background: white;
-        }
-        /* Головний фікс для квадратних фото */
+        /* --- 6. ГАЛЕРЕЯ --- */
+        .gallery { padding: 80px 5%; }
+        .gallery-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; }
+        .gallery-item { border-radius: 20px; overflow: hidden; position: relative; }
         .gallery-item img {
-            width: 100%; 
-            aspect-ratio: 1 / 1; /* Робить квадрат */
-            object-fit: cover; /* Обрізає зайве */
-            transition: 0.5s;
-            background: #ddd; /* Сірий фон, поки вантажиться */
+            width: 100%; aspect-ratio: 1 / 1; object-fit: cover; transition: 0.5s;
         }
         .gallery-item:hover img { transform: scale(1.05); }
-        .gallery-caption {
-            padding: 20px; text-align: center; font-weight: 600; color: var(--accent-dark);
+
+        /* --- 7. КОНТАКТИ --- */
+        .contacts { padding: 80px 5%; background: var(--white); text-align: center; }
+        .contact-grid { 
+            display: flex; flex-wrap: wrap; justify-content: center; gap: 40px; margin-top: 40px; 
+        }
+        .contact-box { font-size: 1.1rem; }
+        .contact-box i { color: var(--accent); font-size: 1.5rem; display: block; margin-bottom: 10px; }
+        
+        .map-frame {
+            width: 100%; height: 400px; border-radius: 20px; overflow: hidden; margin-top: 50px; background: #eee;
         }
 
-        /* --- 9. КОНТАКТИ --- */
-        .location { position: relative; height: 500px; width: 100%; }
-        .map-iframe { width: 100%; height: 100%; border: 0; filter: grayscale(20%); }
-        .contact-card {
-            position: absolute; top: 50%; left: 10%; transform: translateY(-50%);
-            background: var(--white); padding: 40px; border-radius: 20px;
-            box-shadow: 0 20px 50px rgba(0,0,0,0.1); max-width: 400px;
-        }
-        .contact-item { display: flex; align-items: center; gap: 15px; margin-bottom: 20px; color: #555; }
-        .contact-item i { color: var(--accent); font-size: 1.2rem; }
+        /* --- ФУТЕР --- */
+        footer { padding: 30px; text-align: center; font-size: 0.9rem; color: var(--text-light); }
 
-        /* --- МОДАЛКА --- */
-        .modal-overlay {
-            display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(86, 112, 108, 0.9); backdrop-filter: blur(5px);
-            z-index: 5000; justify-content: center; align-items: center;
-        }
-        .modal-overlay.active { display: flex; }
-        .modal-box {
-            background: white; padding: 50px; border-radius: 30px;
-            text-align: center; max-width: 400px; position: relative;
-            box-shadow: 0 20px 60px rgba(0,0,0,0.2);
-        }
-        .close-btn {
-            position: absolute; top: 20px; right: 20px; font-size: 30px; cursor: pointer; color: #999;
-        }
-        .viber-btn-large {
-            background: var(--viber); color: white; padding: 15px 30px; border-radius: 50px;
-            text-decoration: none; display: inline-flex; align-items: center; gap: 10px;
-            font-weight: bold; margin-top: 20px; box-shadow: 0 10px 20px rgba(115, 96, 242, 0.3);
-        }
-
-        /* --- ВІДЖЕТ --- */
-        .widget { position: fixed; bottom: 30px; right: 30px; z-index: 4000; }
-        .widget-btn {
-            width: 60px; height: 60px; background: var(--accent); color: white;
-            border-radius: 50%; display: flex; align-items: center; justify-content: center;
-            font-size: 24px; cursor: pointer; box-shadow: 0 10px 20px rgba(122, 154, 149, 0.4);
-            animation: float 3s ease-in-out infinite;
-        }
+        /* --- WIDGET & MODAL --- */
+        .widget { position: fixed; bottom: 25px; right: 25px; z-index: 4000; }
+        .widget-btn { width: 55px; height: 55px; background: var(--accent); color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 24px; box-shadow: 0 5px 15px rgba(0,0,0,0.2); cursor: pointer; }
         .widget-menu { display: none; flex-direction: column; gap: 10px; margin-bottom: 15px; }
         .widget-menu.active { display: flex; }
+        .social-circle { width: 45px; height: 45px; background: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 20px; box-shadow: 0 5px 10px rgba(0,0,0,0.1); }
         
-        .social-circle {
-            width: 50px; height: 50px; background: white; border-radius: 50%;
-            display: flex; align-items: center; justify-content: center;
-            color: var(--accent-dark); font-size: 20px;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1); transition: 0.3s;
-            text-decoration: none !important;
-        }
-        .social-circle:hover { transform: scale(1.1); }
-        @keyframes float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-10px); } }
+        .modal-overlay { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5); backdrop-filter: blur(5px); z-index: 5000; justify-content: center; align-items: center; padding: 20px; }
+        .modal-overlay.active { display: flex; }
+        .modal-box { background: white; padding: 40px 30px; border-radius: 20px; text-align: center; max-width: 400px; width: 100%; position: relative; }
+        .close-btn { position: absolute; top: 15px; right: 15px; font-size: 24px; color: #999; cursor: pointer; }
+        .viber-btn-large { background: var(--viber); color: white; padding: 15px; border-radius: 50px; display: flex; justify-content: center; align-items: center; gap: 10px; font-weight: bold; margin-top: 20px; width: 100%; }
 
-        /* АДАПТИВНІСТЬ */
+        /* --- АДАПТИВНІСТЬ --- */
         @media (max-width: 768px) {
-            .hero h1 { font-size: 3rem; }
-            .features { margin-top: 0; padding: 60px 5%; }
-            .about-wrapper, .price-container { grid-template-columns: 1fr; }
-            .about-video-frame { order: -1; margin-bottom: 30px; }
-            .contact-card { position: relative; top: 0; left: 0; transform: none; width: 100%; margin-top: -50px; }
-            .price-container { gap: 0; }
-            .header-socials a { font-size: 1.1rem; margin-left: 10px; }
+            .hero { flex-direction: column-reverse; text-align: center; padding-top: 30px; gap: 20px; }
+            .hero h1 { font-size: 2.5rem; }
+            .hero-blob-img { width: 280px; height: 300px; }
+            .price-wrapper { grid-template-columns: 1fr; gap: 30px; padding: 20px; }
+            .logo { font-size: 1.1rem; }
+            .header-phone a { font-size: 0.9rem; }
         }
     </style>
 </head>
 <body>
 
+    <div class="bg-blob blob-1"></div>
+    <div class="bg-blob blob-2"></div>
+
     <header>
-        <div class="logo">PODOLOG EXPERT</div>
-        <div class="header-socials">
-            <a href="https://www.instagram.com/iren.podolog/" target="_blank"><i class="fab fa-instagram"></i></a>
-            <a href="https://www.facebook.com" target="_blank"><i class="fab fa-facebook"></i></a>
-            <a href="https://t.me/irenpodolog" target="_blank"><i class="fab fa-telegram-plane"></i></a>
-            <a href="viber://chat?number=%2B380955141132"><i class="fab fa-viber"></i></a>
-            <a href="https://www.tiktok.com/@iren.podolog" target="_blank"><i class="fab fa-tiktok"></i></a>
-            <a href="tel:+380955141132"><i class="fas fa-phone"></i>+380955141132</a>
+        <div class="logo">BONDARENKO ANASTASIA</div>
+        <div class="header-phone">
+            <a href="tel:+380984493013"><i class="fas fa-phone"></i> +38 (098) 449-30-13</a>
         </div>
     </header>
 
     <section class="hero">
-        <video autoplay muted loop playsinline class="back-video">
-            <source src="video/bg.mp4" type="video/mp4">
-        </video>
+        <div class="hero-text">
+            <h1>Здоров'я<br>ваших ніг</h1>
+            <p>Професійна подологія в Умані. Медичний підхід, естетика та повна стерильність.</p>
+            <a href="#price" class="btn">Дізнатися ціни</a>
+        </div>
         
-        <div class="hero-overlay"></div>
-        <div class="hero-content">
-            <h1>Здоров'я ваших ніг</h1>
-            <p>Професійна подологія в Голованівську. Естетика, безпека та турбота.</p>
-            <a href="#price" class="btn">Переглянути послуги</a>
+        <div class="hero-image-container">
+            <img src="img/shapka.jpg" alt="Подолог Умань" class="hero-blob-img">
         </div>
     </section>
 
     <section class="features">
         <div class="feature-card">
-            <div class="icon-circle"><i class="fas fa-shield-alt"></i></div>
+            <div class="feature-icon"><i class="fas fa-shield-alt"></i></div>
             <h3>Безпека 100%</h3>
-            <p>4 етапи стерилізації. Крафт-пакет відкривається при Вас.</p>
+            <p>4 етапи стерилізації інструменту.</p>
         </div>
         <div class="feature-card">
-            <div class="icon-circle"><i class="fas fa-feather"></i></div>
+            <div class="feature-icon"><i class="fas fa-feather"></i></div>
             <h3>Без болю</h3>
-            <p>Делікатна обробка найскладніших проблем.</p>
+            <p>Делікатна робота з проблемами.</p>
         </div>
         <div class="feature-card">
-            <div class="icon-circle"><i class="fas fa-user-nurse"></i></div>
-            <h3>Професіоналізм</h3>
-            <p>Медичний підхід до здоров'я стопи.</p>
-        </div>
-    </section>
-
-    <section class="about">
-        <div class="about-wrapper">
-            <div class="about-text">
-                <h2 class="section-title" style="text-align: left; margin-bottom: 30px;">Турбота про ваші кроки</h2>
-                <p>Турбують проблеми з вросшим нігтем або втратою естетичного вигляду? Маєте хворобливі натоптиші, мозолі чи тріщини?</p>
-                <p>Я, <span class="highlight">Піщанська Іра</span>, кваліфікований подолог у Голованівську. Моя мета — не просто зробити педикюр, а вирішити проблему та повернути легкість вашій ході.</p>
-                <p>Використовую сучасні методики корекції нігтів (Титанова нитка, Скоби) та професійне обладнання.</p>
-                <br>
-                <button class="btn" onclick="openModal()">Записатися на консультацію</button>
-            </div>
-            <div class="about-video-frame">
-                <video autoplay muted loop playsinline>
-                    <source src="video/about-tiktok.mp4" type="video/mp4">
-                </video>
-            </div>
+            <div class="feature-icon"><i class="fas fa-user-md"></i></div>
+            <h3>Досвід</h3>
+            <p>Кваліфікований спеціаліст.</p>
         </div>
     </section>
 
     <section id="price" class="pricing">
         <h2 class="section-title">Прайс-лист</h2>
-        <div class="price-container">
+        <div class="price-wrapper">
             <div class="price-col">
+                <h3>Подологія</h3>
                 <div class="price-row"><span class="price-name">Консультація</span><span class="price-cost">200 ₴</span></div>
                 <div class="price-row"><span class="price-name">Апаратний педикюр (Жін.)</span><span class="price-cost">600 ₴</span></div>
-                <div class="price-row"><span class="price-name">Апаратний педикюр (Чол.)</span><span class="price-cost">700 / 800 ₴</span></div>
-                <div class="price-row"><span class="price-name">Кератоз / Тріщини</span><span class="price-cost">600 / 800 ₴</span></div>
-                <div class="price-row"><span class="price-name">Врослий ніготь</span><span class="price-cost">400 / 700 ₴</span></div>
-                <div class="price-row"><span class="price-name">Видалення мозолів</span><span class="price-cost">400+ ₴</span></div>
+                <div class="price-row"><span class="price-name">Апаратний педикюр (Чол.)</span><span class="price-cost">800 ₴</span></div>
+                <div class="price-row"><span class="price-name">Обробка тріщин</span><span class="price-cost">від 600 ₴</span></div>
+                <div class="price-row"><span class="price-name">Врослий ніготь</span><span class="price-cost">від 400 ₴</span></div>
+                <div class="price-row"><span class="price-name">Видалення мозолів</span><span class="price-cost">від 400 ₴</span></div>
+                <div class="price-row"><span class="price-name">Титанова нитка</span><span class="price-cost">1100 ₴</span></div>
             </div>
+
             <div class="price-col">
-                <div class="price-row"><span class="price-name">Встановлення Титанової нитки</span><span class="price-cost">1100 ₴</span></div>
-                <div class="price-row"><span class="price-name">Скоба Фрезера</span><span class="price-cost">1400 ₴</span></div>
-                <div class="price-row"><span class="price-name">Оніхомікоз (Грибок)</span><span class="price-cost">300 - 700 ₴</span></div>
-                <div class="price-row"><span class="price-name">Бородавки</span><span class="price-cost">400 - 600 ₴</span></div>
-                <div class="price-row"><span class="price-name">Покриття гель-лак</span><span class="price-cost">500 ₴</span></div>
-                <div class="price-row"><span class="price-name">Протезування</span><span class="price-cost">від 200 ₴</span></div>
+                <h3>Дизайни</h3>
+                <div class="price-row"><span class="price-name">Френч / Лунки / Омбре</span><span class="price-cost">80 ₴</span></div>
+                <div class="price-row"><span class="price-name">Сухоцвіти</span><span class="price-cost">60 ₴</span></div>
+                <div class="price-row"><span class="price-name">Втирка</span><span class="price-cost">50 ₴</span></div>
+                <div class="price-row"><span class="price-name">Об'ємні дизайни</span><span class="price-cost">20 ₴</span></div>
+                <div class="price-row"><span class="price-name">Слайдер / Фольга / Стемпінг</span><span class="price-cost">10 ₴</span></div>
+                <div class="price-row"><span class="price-name">Стрази (1 шт)</span><span class="price-cost">3-5 ₴</span></div>
+                <div class="price-row"><span class="price-name">Ручний розпис</span><span class="price-cost">від 20 ₴</span></div>
             </div>
         </div>
-        <div style="text-align: center; margin-top: 50px;">
-            <button class="btn" onclick="openModal()">Записатися на прийом</button>
+        <div style="text-align: center; margin-top: 40px;">
+            <button class="btn" onclick="openModal()">Записатися</button>
         </div>
     </section>
 
     <section class="gallery">
         <h2 class="section-title">Результати</h2>
         <div class="gallery-grid">
-            <div class="gallery-item"><img src="img/work1.jpg" alt="Робота 1"><div class="gallery-caption">Врослий ніготь</div></div>
-            <div class="gallery-item"><img src="img/work2.jpg" alt="Робота 2"><div class="gallery-caption">Обробка стопи</div></div>
-            <div class="gallery-item"><img src="img/work1.jpg" alt="Робота 3"><div class="gallery-caption">Відновлення</div></div>
+            <div class="gallery-item"><img src="img/work1.jpg" alt="Робота 1"></div>
+            <div class="gallery-item"><img src="img/work2.jpg" alt="Робота 2"></div>
+            <div class="gallery-item"><img src="img/work3.jpg" alt="Робота 3"></div>
         </div>
     </section>
 
-    <section class="location">
-        <iframe class="map-iframe" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d632.2854795412569!2d30.456836027520847!3d48.385706470528426!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x40ce075a5ae3b1ed%3A0x677747e2720b12e!2z0IbRgNC40L3QsCDQn9C-0LTQvtC70L7QsyDQk9C-0LvQvtCy0LDQvdGW0LLRgdGM0Lo!5e0!3m2!1sru!2sua!4v1767449700047!5m2!1sru!2sua" loading="lazy"></iframe>
-        <div class="contact-card">
-            <h3 style="font-family: 'Cormorant Garmond'; font-size: 2rem; margin-bottom: 20px; color: var(--accent-dark);">Контакти</h3>
-            <div class="contact-item"><i class="fas fa-map-marker-alt"></i> смт. Голованівськ, вул. Ринкова, 2</div>
-            <div class="contact-item"><i class="fas fa-clock"></i> Вт-Сб: 09:00 - 20:00</div>
-            <div class="contact-item"><i class="fas fa-phone"></i> +38 (095) 514-11-32</div>
-            <button class="btn" style="width: 100%; margin-top: 10px;" onclick="openModal()">Записатись</button>
+    <section class="contacts">
+        <h2 class="section-title">Контакти</h2>
+        <div class="contact-grid">
+            <div class="contact-box">
+                <i class="fas fa-map-marker-alt"></i>
+                м. Умань
+            </div>
+            <div class="contact-box">
+                <i class="fas fa-phone"></i>
+                +38 (098) 449-30-13
+            </div>
+            <div class="contact-box">
+                <i class="fas fa-clock"></i>
+                Вт-Сб: 09:00 - 17:00<br>
+                <span style="font-size: 0.9rem; color: #888;">Нд-Пн: Вихідний</span>
+            </div>
+        </div>
+        
+        <div class="map-frame">
+            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d657.7020321620575!2d30.21831828069678!3d48.74736186306009!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x40d20d6bd4eac397%3A0xb4a6f8fe4814c5c!2sPodoloh%20Uman%20Anastasiya%20Bondarenko!5e0!3m2!1sru!2sua!4v1767630455412!5m2!1sru!2sua" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe> 
         </div>
     </section>
 
-    <footer><p>© 2026 Podolog Expert. Всі права захищено.</p></footer>
+    <footer>
+        <p>© 2026 Bondarenko Anastasia</p>
+    </footer>
 
     <div class="widget">
         <div class="widget-menu" id="widgetMenu">
-            <a href="https://t.me/irenpodolog" class="social-circle" style="color: #0088cc;"><i class="fab fa-telegram-plane"></i></a>
-            <a href="viber://chat?number=%2B380955141132" class="social-circle" style="color: #665cac;"><i class="fab fa-viber"></i></a>
-            <a href="https://www.instagram.com/iren.podolog/" class="social-circle" style="color: #e1306c;"><i class="fab fa-instagram"></i></a>
+            <a href="https://t.me/" class="social-circle" style="color: #0088cc;"><i class="fab fa-telegram-plane"></i></a>
+            <a href="viber://chat?number=%2B380984493013" class="social-circle" style="color: #665cac;"><i class="fab fa-viber"></i></a>
+            <a href="https://www.instagram.com/anastasia_podolog_uman?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==" class="social-circle" style="color: #e1306c;"><i class="fab fa-instagram"></i></a>
             <a href="https://www.facebook.com" class="social-circle" style="color: #3b5998;"><i class="fab fa-facebook-f"></i></a>
+            <a href="https://www.tiktok.com" class="social-circle" style="color: #000;"><i class="fab fa-tiktok"></i></a>
         </div>
         <div class="widget-btn" onclick="toggleWidget()"><i class="fas fa-comment"></i></div>
     </div>
@@ -442,9 +354,11 @@
     <div id="modal" class="modal-overlay" onclick="closeModal(event)">
         <div class="modal-box">
             <span class="close-btn" onclick="closeModalButton()">×</span>
-            <h3 style="font-size: 1.8rem; margin-bottom: 10px;">Онлайн запис</h3>
-            <p style="color: #666;">Для швидкого запису напишіть мені у Viber. Я підберу зручний час.</p>
-            <a href="viber://chat?number=%2B380955141132" class="viber-btn-large"><i class="fab fa-viber"></i> Відкрити Viber</a>
+            <h3>Запис на прийом</h3>
+            <p>Напишіть мені у Viber для підбору зручного часу.</p>
+            <a href="viber://chat?number=%2B380955141132" class="viber-btn-large">
+                <i class="fab fa-viber"></i> Відкрити Viber
+            </a>
         </div>
     </div>
 
@@ -454,6 +368,5 @@
         function closeModal(e) { if (e.target === document.getElementById('modal')) closeModalButton(); }
         function toggleWidget() { document.getElementById('widgetMenu').classList.toggle('active'); }
     </script>
-
 </body>
 </html>
